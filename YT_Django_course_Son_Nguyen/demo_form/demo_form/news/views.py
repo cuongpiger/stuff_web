@@ -1,34 +1,41 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import PostForm, SendEmail
+from django.views import View
 
-def index(request):
-    return HttpResponse("Hello World!")
+# this is based class view
+class IndexClass(View):
+    # like def index(request):
+    def get(self, request):
+        ketqua = "12323345"
+        return HttpResponse(ketqua)
 
 
-def add_post(request):
-    a = PostForm()
-    return render(request, 'news/add_news.html', {'f': a})
+class ClassSaveNews(View):
+    def get(self, request):
+        a = PostForm()
+        return render(request, 'news/add_news.html', {'f': a})
 
-
-def save_news(request):
-    if request.method == 'POST':
-        g = PostForm(request.POST)
-        
+    
+    def put(self):
+        pass
+    
+    def post(self, request):
+        g = PostForm(request.POST)        
         if g.is_valid(): # match with data type we set up in Post at file news/modes.py
             g.save()
             return HttpResponse("Success!")
         else:
             return HttpResponse("Fail!")
-    else:
-        return HttpResponse("This is not a POST request!")
     
     
+# this is function based view
 def email_view(request):
     b = SendEmail()
     return render(request, 'news/email.html', {'f': b})
 
 
+# this is function based view
 def process(request):
     if request.method == 'POST':
         m = SendEmail(request.POST)

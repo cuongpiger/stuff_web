@@ -6,5 +6,5 @@ class Post(models.Model):
     content = models.TextField(max_length=1000, blank=False, null=False)
     time_create = models.DateTimeField(default=timezone.datetime.now())
     
-    
-    
+    def __str__(self):
+        return self.title
