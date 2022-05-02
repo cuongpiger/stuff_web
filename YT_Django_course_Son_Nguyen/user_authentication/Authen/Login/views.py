@@ -62,7 +62,7 @@ class AddPost(LoginRequiredMixin, View):
         if not f.is_valid():
             return HttpResponse("Invalid form")
         
-        print(request.user.get_all_permissions())
+        # print(request.user.get_all_permissions()) # get all permission of this user
         if request.user.has_perm('Login.add_post'): # model name have to be lower-case
             # user has permission to add post
             # save data into database
