@@ -1,0 +1,13 @@
+Python 3.9.12
+Package             Version
+------------------- ---------
+asgiref             3.5.1
+certifi             2021.10.8
+Django              3.2.7
+django-cors-headers 3.11.0
+djangorestframework 3.13.1
+pip                 21.2.4
+pytz                2022.1
+setuptools          61.2.0
+sqlparse            0.4.2
+wheel               0.37.1
