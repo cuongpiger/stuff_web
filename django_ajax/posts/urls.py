@@ -1,10 +1,13 @@
 from django.urls import path
 from .views import (
-    post_list_and_created
+    post_list_and_created,
+    hello_world_view
 )
 
 
 app_name = 'posts'
 urlpatterns = [
     path('', post_list_and_created, name='main-board'),
+    
+    path('hello-world/', hello_world_view, name='hello-world'),
 ]
