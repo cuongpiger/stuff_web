@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block scripts %}
+  <!-- defer parameter is used to delay js code until the page is completely loaded -->
+  <script src="{% static 'posts/main.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+  {% for obj in qs %}
+    {{ obj.title }} - {{ obj.body }}<br>
+  {% endfor %}
+{% endblock content %}
