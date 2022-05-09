@@ -33,8 +33,22 @@ $.ajax({
     
             data.forEach(el => {
                 postsBox.innerHTML += `
-                    ${el.title} - <b>${el.body}</b><br>
-                `
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">${el.title}</h5>
+                        <p class="card-text">${el.body}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-1">
+                                <a href="#" class="btn btn-primary">Detail</a>
+                            </div>
+                            <div class="col-1">
+                                <a href="#" class="btn btn-primary">Like</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
             });
         }, 100)
     },
