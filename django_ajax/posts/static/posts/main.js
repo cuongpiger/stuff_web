@@ -3,13 +3,14 @@ console.log('hello mấy cưng')
 const helloWorldBox = document.getElementById('hello-world')
 
 // helloWorldBox.textContent = 'Hello mấy cưng'
-helloWorldBox.innerHTML = 'Hello <b style="color: red;">mấy cưng</b>'
+// helloWorldBox.innerHTML = 'Hello <b style="color: red;">mấy cưng</b>'
 
 $.ajax({
     type: "GET",
     url: "/hello-world/",
     success: function(response) {
-        console.log(">> Success: ", response)
+        console.log(">> Success: ", response.text)
+        helloWorldBox.textContent = response.text
     },
     error: function(error) {
         console.log('>> Error', error)
