@@ -2,6 +2,7 @@ console.log('hello mấy cưng')
 
 const helloWorldBox = document.getElementById('hello-world')
 const postsBox = document.getElementById('posts-box')
+const spinnerBox = document.getElementById('spinner-box')
 
 // helloWorldBox.textContent = 'Hello mấy cưng'
 // helloWorldBox.innerHTML = 'Hello <b style="color: red;">mấy cưng</b>'
@@ -25,13 +26,17 @@ $.ajax({
         console.log(response)
         const data = response.data
 
-        console.log(data)
+        setTimeout(() => {
+            spinnerBox.classList.add('not-visible')
 
-        data.forEach(el => {
-            postsBox.innerHTML += `
-                ${el.title} - <b>${el.body}</b><br>
-            `
-        });
+            console.log(data)
+    
+            data.forEach(el => {
+                postsBox.innerHTML += `
+                    ${el.title} - <b>${el.body}</b><br>
+                `
+            });
+        }, 100)
     },
     error: function(error) {
         console.log(">> Error: ", error)

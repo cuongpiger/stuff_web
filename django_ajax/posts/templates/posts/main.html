@@ -6,11 +6,14 @@
   <!-- defer parameter is used to delay js code until the page is completely loaded -->
   <script src="{% static 'posts/main.js' %}" defer></script>
 {% endblock scripts %}
-
+posts
 {% block title %}
 {% endblock title %}
 
 {% block content %}
+  <div id="spinner-box">
+    <div class="spinner-border" role="status"></div>
+  </div>
   <div id="posts-box"></div>
   <div id="hello-world"></div>
 {% endblock content %}
