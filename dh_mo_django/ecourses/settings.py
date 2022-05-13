@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'courses.apps.CoursesConfig',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 # giữa các tầng, xây dựng các middleware để kiểm tra, xử lí cái gì đó trước khi đưa xuống server
@@ -127,6 +129,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = "%s/courses/static/" % BASE_DIR
+
+CKEDITOR_UPLOAD_PATH = "lessons/" # tài nguyên của ckeditor lưu trong folder lessons ở static
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
