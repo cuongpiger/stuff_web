@@ -64,3 +64,6 @@ class Tag(models.Model):
 """
 
 """
+
+# remember that permission in permission page, the format likes this:
+# something2|something2| some permission => something1 is the app name, something 2 is the models in file models.py of the app
