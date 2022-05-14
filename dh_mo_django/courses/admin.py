@@ -2,8 +2,11 @@ from django.contrib import admin
 from django.db.models import fields
 from django.utils.html import mark_safe
 from django import forms
+from django.db.models import Count
 from .models import Category, Lesson, Course, Tag
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django.urls import path
+from django.template.response import TemplateResponse
 
 
 """
@@ -66,8 +69,34 @@ class CourseAdmin(admin.ModelAdmin):
     inlines = (LessonInline,)
 
 
-# Register your models here.
-admin.site.register(Category)
-admin.site.register(Lesson, LessonAdmin)
-admin.site.register(Course, CourseAdmin)
+"""
+Custom lại admin site
+"""
+class CourseAppAdminSite(admin.AdminSite):
+    site_header = "HỆ THỐNG QUẢN LÝ KHÓA HỌC"
+    
+    def get_urls(self):
+        return [
+            path("course-stats/", self.course_stats)
+        ] + super().get_urls()
+    
+    
+    def course_stats(self, request):
+        course_count = Course.objects.count()
+        stats = Course.objects.annotate(lesson_count=Count('lessons')).values('id', 'subject', 'lesson_count') # group based on id, subject then count on lessons foreign key
+        
+        return TemplateResponse(request, "admin/course-stats.html", {
+            "course_count": course_count,
+            'stats': stats
+        })
 
+admin_site = CourseAppAdminSite('mycourse') # đặt tên là mycourse
+    
+
+# Register your models here.
+# admin.site.register(Category)
+# admin.site.register(Lesson, LessonAdmin)
+# admin.site.register(Course, CourseAdmin)
+admin_site.register(Category)
+admin_site.register(Lesson, LessonAdmin)
+admin_site.register(Course, CourseAdmin)
